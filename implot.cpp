@@ -4187,15 +4187,7 @@ bool DragRect(int n_id, double* x_min, double* y_min, double* x_max, double* y_m
     }
     DrawList.AddRectFilled(rect.Min, rect.Max, col32_a);
     DrawList.AddRect(rect.Min, rect.Max, col32);
-<<<<<<< HEAD
     if (input && (modified || mouse_inside)) {
-        DrawList.AddCircleFilled(pc,DRAG_GRAB_HALF_SIZE,col32);
-||||||| parent of 12909cc (Fixed drag bug. Removed center point)
-    if (input && (dragging || rect_grab.Contains(ImGui::GetMousePos()))) {
-        DrawList.AddCircleFilled(pc,DRAG_GRAB_HALF_SIZE,col32);
-=======
-    if (input && (dragging || rect_grab.Contains(ImGui::GetMousePos()))) {
->>>>>>> 12909cc (Fixed drag bug. Removed center point)
         for (int i = 0; i < 4; ++i)
             DrawList.AddCircleFilled(p[i],DRAG_GRAB_HALF_SIZE,col32);
     }
