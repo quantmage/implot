@@ -4276,7 +4276,11 @@ bool DragRect(int n_id, double* x_min, double* y_min, double* x_max, double* y_m
         ImGui::KeepAliveID(id);
         if (input) {
             // middle point
-            ImRect b_rect(pc.x-DRAG_GRAB_HALF_SIZE,pc.y-DRAG_GRAB_HALF_SIZE,pc.x+DRAG_GRAB_HALF_SIZE,pc.y+DRAG_GRAB_HALF_SIZE);
+            ImVec2 dragBoxPoint1 = PlotToPixels(*x_min*y_max,IMPLOT_AUTO, IMPLOT_AUTO);
+            ImVec2 dragBoxPoint2 = PlotToPixels(*x_min*y_min,IMPLOT_AUTO, IMPLOT_AUTO);
+            ImVec2 dragBoxPoint3 = PlotToPixels(*x_max*y_min,IMPLOT_AUTO, IMPLOT_AUTO);
+            ImVec2 dragBoxPoint4 = PlotToPixels(*x_max*y_max,IMPLOT_AUTO, IMPLOT_AUTO);
+            ImRect b_rect(dragBoxPoint1.x, dragBoxPoint1.y, dragBoxPoint3.x, dragBoxPoint3.y);
             clicked = ImGui::ButtonBehavior(b_rect,id,&hovered,&held);
             if (out_clicked) *out_clicked = clicked;
             if (out_hovered) *out_hovered = hovered;
