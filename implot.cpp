@@ -4093,11 +4093,7 @@ bool DragRect(int n_id, double* x_min, double* y_min, double* x_max, double* y_m
 
     bool modified = false;
     bool clicked = false, hovered = false, held = false;
-    ImVec2 dragBoxPoint1 = PlotToPixels(*x_min*y_max,IMPLOT_AUTO, IMPLOT_AUTO);
-    ImVec2 dragBoxPoint2 = PlotToPixels(*x_min*y_min,IMPLOT_AUTO, IMPLOT_AUTO);
-    ImVec2 dragBoxPoint3 = PlotToPixels(*x_max*y_min,IMPLOT_AUTO, IMPLOT_AUTO);
-    ImVec2 dragBoxPoint4 = PlotToPixels(*x_max*y_max,IMPLOT_AUTO, IMPLOT_AUTO);
-    ImRect b_rect(dragBoxPoint1.x, dragBoxPoint1.y, dragBoxPoint3.x, dragBoxPoint3.y);
+    ImRect b_rect = rect;
 
     ImGui::KeepAliveID(id);
     if (input) {
@@ -4191,8 +4187,15 @@ bool DragRect(int n_id, double* x_min, double* y_min, double* x_max, double* y_m
     }
     DrawList.AddRectFilled(rect.Min, rect.Max, col32_a);
     DrawList.AddRect(rect.Min, rect.Max, col32);
+<<<<<<< HEAD
     if (input && (modified || mouse_inside)) {
         DrawList.AddCircleFilled(pc,DRAG_GRAB_HALF_SIZE,col32);
+||||||| parent of 12909cc (Fixed drag bug. Removed center point)
+    if (input && (dragging || rect_grab.Contains(ImGui::GetMousePos()))) {
+        DrawList.AddCircleFilled(pc,DRAG_GRAB_HALF_SIZE,col32);
+=======
+    if (input && (dragging || rect_grab.Contains(ImGui::GetMousePos()))) {
+>>>>>>> 12909cc (Fixed drag bug. Removed center point)
         for (int i = 0; i < 4; ++i)
             DrawList.AddCircleFilled(p[i],DRAG_GRAB_HALF_SIZE,col32);
     }
